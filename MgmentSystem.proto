@@ -1,0 +1,50 @@
+// This is the service definition of the simple scenario.
+syntax = "proto3";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+message Book {
+    string title = 1;
+    string author_1=2;
+    string author_2=3;
+    string location=4;
+    string isbn=5;
+    string status=6;
+};
+
+message Borrowed_books {
+    string userId = 1;
+    string isbn = 2;
+
+}
+
+message User {
+    string userId = 1;
+    string name = 2;
+    string accountType = 3;
+}
+
+
+
+service MgmentSystem {
+	  
+    rpc add_book(Book) returns (google.protobuf.StringValue);
+
+    rpc create_user(User) returns (User);
+
+    rpc update_book(Book) returns (Book);
+
+    rpc remove_book(google.protobuf.StringValue) returns (google.protobuf.StringValue);
+
+    rpc available_books(google.protobuf.Empty) returns (google.protobuf.StringValue);
+
+    rpc get_user(google.protobuf.Empty) returns (User);
+
+
+
+    rpc locate_book(google.protobuf.StringValue) returns (google.protobuf.StringValue);
+    
+    rpc borrow_book(Borrowed_books) returns (google.protobuf.StringValue);
+    
+
+}
